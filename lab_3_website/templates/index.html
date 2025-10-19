@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Poppins", Arial, sans-serif;
+    scroll-behavior: smooth;
+    background-color: #f8f9fa;
+    color: #222;
+  }
+
+  /* Navbar */
+  nav {
+    background-color: #222;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
+    font-weight: 500;
+  }
+
+  nav a:hover {
+    transform: translateY(-3px);
+    color: #00ffcc;
+  }
+
+  section {
+    padding-top: 80px;
+  }
+
+  /* Profile Section (Banner) */
+  #profile {
+    position: relative;
+    height: 600px;
+    background: url("{{ url_for('static', filename='images/AJ5D2165.jpg') }}") center/cover no-repeat;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Overlay for readability */
+  #profile::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  #profile .content {
+    position: relative;
+    max-width: 700px;
+    padding: 20px;
+    z-index: 1;
+  }
+
+  #profile h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+  }
+
+  #profile p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  /* Works Section */
+#works {
+  background: #f0f0f0;
+  padding: 100px 20px;
+}
+
+#works h2 {
+  text-align: center;
+  color: #222;
+}
+
+#works .projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 35px;
+  margin-top: 40px;
+}
+
+.project-card {
+  background: white;
+  width: 300px;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+
+  /* Contact Section */
+  #contact {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+  }
+
+  #contact a {
+    color: #00ffcc;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  #contact a:hover {
+    text-decoration: underline;
+  }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#profile">Profile</a>
+  <a href="#works">Works</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="profile">
+  <div class="content">
+    <h1>Welcome! I'm Adrian Kurt Mariñas</h1>
+    <p>Currently studying Bachelor of Science in Computer Engineering (BSCpE 2-2) at the Polytechnic University of the Philippines - Sta. Mesa Campus.</p>
+  </div>
+</section>
+
+<section id="works">
+  <h2>My Works</h2>
+  <div class="projects">
+  <a href="/touppercase" target="_blank" class="project-card">
+    <h3>Upper Case Converter</h3>
+    <p>A simple tool to convert text to upper case.</p>
+  </a>
+
+  <a href="/area_circle" target="_blank" class="project-card">
+    <h3>Area of a Circle</h3>
+    <p>Calculate the area of a circle with a given radius.</p>
+  </a>
+
+  <a href="/area_triangle" target="_blank" class="project-card">
+    <h3>Area of a Triangle</h3>
+    <p>Calculate the area of a triangle with a given base and height.</p>
+  </a>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>My Contacts:</h2>
+  <p>Feel free to reach out via email: <strong>dilanmariñas@gmail.com</strong></p>
+  <p>Or connect on <a href="https://www.linkedin.com/in/adrian-kurt-mari%C3%B1as-a77a0536a/" target="_blank">LinkedIn</a></p>
+</section>
+
+</body>
+</html>
