@@ -3,6 +3,56 @@ import numpy as np
 
 app = Flask(__name__)
 
+def precedence(op):
+    if op == '^':
+        return 3
+    elif op in ('*', '/'):
+        return 2
+    elif op in ('+', '-'):
+        return 1
+    return -1
+
+def infix_to_postfix(expression):
+    stack = []
+    result = []
+    
+    for char in expression:
+        # Operand
+        if char.isalnum():
+            result.append(char)
+        
+        # Opening parenthesis
+        elif char == '(':
+            stack.append(char)
+        
+        # Closing parenthesis
+        elif char == ')':
+            while stack and stack[-1] != '(':
+                result.append(stack.pop())
+            if stack:
+                stack.pop()  # Remove '('
+            else:
+                print("Error: Mismatched parentheses.")
+                return None
+        
+        # Operator
+        else:
+            while (stack and stack[-1] != '(' and
+                   (precedence(char) < precedence(stack[-1]) or
+                    (precedence(char) == precedence(stack[-1]) and char != '^'))):
+                result.append(stack.pop())
+            stack.append(char)
+    
+    # Pop all remaining operators
+    while stack:
+        if stack[-1] == '(':
+            print("Error: Mismatched parentheses.")
+            return None
+        result.append(stack.pop())
+    
+    return ' '.join(result)
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -33,6 +83,15 @@ def area_triangle():
         if input_base and input_height:
             area = 0.5 * input_base * input_height
     return render_template('area_triangle.html', area="{:.2f}".format(area) if area is not None else None)
+
+@app.route('/infix-to-postfix_converter', methods=['GET', 'POST'])
+def infix_to_postfix_converter():
+    expression = ""
+    postfix = ""
+    if request.method == "POST":
+        expression = request.form["expression"].replace(' ', '')
+        postfix = infix_to_postfix(expression)
+    return render_template("infix-to-postfix_converter.html", expression=expression, postfix=postfix)
 
 if __name__ == "__main__":
     app.run(debug=True)
