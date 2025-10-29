@@ -46,11 +46,3 @@ def infix_to_postfix(expression):
         result.append(stack.pop())
     
     return ' '.join(result)
-
-# input and output
-if __name__ == "__main__":
-    expression = input("Enter infix expression: ").replace(' ', '')
-    postfix = infix_to_postfix(expression)
-
-    if postfix:
-        print("Postfix Expression:", postfix)
